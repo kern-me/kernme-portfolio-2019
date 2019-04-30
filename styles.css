@@ -1,3 +1,6 @@
+/* --------------------- */
+/* GLOBAL
+/* --------------------- */
 /*Typefaces*/
 body {
   font-Family: 'Quattrocento', Serif;
@@ -11,10 +14,70 @@ h1, h2, h3, h4, h5 {
   word-break: initial;
 }
 
+article:before, nav:before { background: none; }
+
+section .post h1 {
+  word-break: initial;
+}
+
+hr {
+  display: block;
+  height: 0px;
+  border: 0;
+  border-top: 1px dotted #ccc;
+  margin: 5% 0 0% 0;
+}
+
+/* h1 consistency throughout page types */
+.permalinkpage h1.post-title,
+.tag-page-title h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin: 0 0  2rem 0;
+  padding: 0;
+  text-align: center
+}
+
+/* --------------------- */
+/* TYPOGRAPHY PATTERNS
+/* --------------------- */
+
+/* Body Copy Size */
+.caption p,
+.post p,
+.post ol li,
+.post ul li {
+  font-size: 1rem
+}
+
+/* Small Size */
+small,
+article aside .meta-wrapper {
+  font-size: 1rem
+}
+
+/* --------------------- */
+/* FOOTER
+/* --------------------- */
+
+footer {
+  background-color: #333;
+  margin: 3em 0 0 0;
+  padding: 3em 0;
+  border-top: 1px dashed #ccc;
+}
+
+footer * {  color: white }
+
+.meta-wrapper {
+  border-top: #ccc dashed 1px;
+  padding-top: 1rem
+}
 
 /* --------------------- */
 /* HEADER
 /* --------------------- */
+
 #blog-title h1 {
   font-size: 2rem;
   letter-spacing: 0.15rem;
@@ -38,9 +101,8 @@ header h2 { width: auto; }
   text-transform: none
 }
 
-/* --------------------- */
-/* MENU
-/* --------------------- */
+
+/* MENU */
 
 #container nav {
   background: #4c4c4c;
@@ -54,6 +116,11 @@ nav:before { margin: 0; }
 nav a {
   color: white;
   letter-spacing: 1px;
+}
+
+#menu li.active a {
+  color: #ffcc00;
+  font-weight: normal
 }
 
 #menu {
@@ -84,10 +151,6 @@ nav a {
   width: 100%
 }
 
-
-article:before, nav:before { background: none; }
-
-
 /* --------------------- */
 /* POSTS
 /* --------------------- */
@@ -107,7 +170,7 @@ article:before, nav:before { background: none; }
   border: 1px solid #ccc;
 }
 
-/*Unique post rules*/
+/* Unique post rules */
 .post h2,
 .post h3,
 .post p,
@@ -116,19 +179,15 @@ article:before, nav:before { background: none; }
   margin: 1rem 0 0 0
 }
 
-/*.post img:first-of-type {*/
-/*    float: left;*/
-/*    width: 50%;*/
-/*}*/
-
 article .post p:last-of-type { margin-bottom: 1rem }
 
 
 /* --------------------- */
 /* PERMALINK PAGES
 /* --------------------- */
+
 .permalinkpage .post p:first-of-type {
-  display: none;
+  /*display: none;*/
 }
 
 .permalinkpage .post h2 { 
@@ -151,14 +210,6 @@ article .post p:last-of-type { margin-bottom: 1rem }
   margin-top: 2rem;
 }
 
-
-/* Small */
-small,
-article aside .meta-wrapper {
-  font-size: 1rem
-}
-
-/*Permalink Page Headings*/
 .permalinkpage .post h1,
 .permalinkpage .post h2,
 .permalinkpage .post h3 {
@@ -168,28 +219,31 @@ article aside .meta-wrapper {
 /*First paragraph after h3*/
 .permalinkpage h3 + p { margin-top: 0.5rem }
 
-
-/* --------------------- */
-/* GLOBAL
-/* --------------------- */
-
-hr {
-  display: block;
-  height: 0px;
-  border: 0;
-  border-top: 1px dotted #ccc;
-  margin: 5% 0 0% 0;
-}
-
 /* --------------------- */
 /* INDEX PAGE
 /* --------------------- */
+
+.indexpage h1.post-title { font-size: 1.75rem }
+.indexpage .post h2 { font-size: 1.5rem }
+.indexpage .post h3 { color: #a9a9a9 }
 
 .indexpage article {
   background: white;
   border: 1px dotted #e7e7e7;
   box-sizing: border-box;
   padding: 0 25px;
+}
+
+/* Index page post truncation */
+.indexpage article .post p:last-of-type {
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-height: 1.8;        /* fallback */
+  max-height: 5.4rem;       /* fallback */
 }
 
 #container {
@@ -205,51 +259,5 @@ hr {
 }
 
 
-/* --------------------- */
-/* FOOTER
-/* --------------------- */
-
-footer {
-  background-color: #333;
-  margin: 3em 0 0 0;
-  padding: 3em 0;
-  border-top: 1px dashed #ccc;
-}
-
-footer * {  color: white }
-
-/*  ---------------------
-  TYPOGRAPHY
-  --------------------- */
-
-/* Body Copy */
-.caption p,
-.post p,
-.post ol li,
-.post ul li {
-  font-size: 1rem
-}
 
 
-
-.indexpage h1.post-title { font-size: 1.75rem }
-.indexpage .post h2 { font-size: 1.5rem }
-.indexpage .post h3 { color: #a9a9a9 }
-
-.permalinkpage h1.post-title,
-.tag-page-title h1 {
-  font-size: 4rem;
-  line-height: 1.1;
-  margin: 0 0  2rem 0;
-  padding: 0;
-  text-align: center
-}
-
-.meta-wrapper {
-  border-top: #ccc dashed 1px;
-  padding-top: 1rem
-}
-
-section .post h1 {
-  word-break: initial;
-}
