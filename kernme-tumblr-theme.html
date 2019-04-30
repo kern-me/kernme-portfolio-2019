@@ -51,10 +51,39 @@
         <link rel="stylesheet" href="https://static.tumblr.com/wdg4six/J1Yn86t5d/creativetree-icons.css">
         <link rel="stylesheet" href="https://static.tumblr.com/wdg4six/iEEn9tpeq/square-main.css">
         <link rel="stylesheet" href="https://static.tumblr.com/wofln30/FGGmyt1xp/colorbox.css">
+        
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento" rel="stylesheet">
-    
+        
+        <!-- Kern-me CSS Overrides -->
+        <link rel="stylesheet" type="text/css" href="https://static.tumblr.com/codwazr/8Wepqs1t9/styles.css">
+        
+        
+        <!-- Modernizer -->
         <script src="https://static.tumblr.com/wdg4six/fUCn4uglv/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+        <!-- String Replacements -->
+        <!-- CREDIT: https://github.com/padolsey/findAndReplaceDOMText -->
+       <script src="https://static.tumblr.com/codwazr/N8Fpqs13s/findandreplacedomtext.js"></script>
+        
+        {block:TagPage}
+        <style>
+            .hide-me {
+                display: none;
+            }
+        </style>
+        
+        <script>
+            findAndReplaceDOMText(document.querySelector('.tag-page-title h1'), {
+                find: '“”',
+                wrap: 'em',
+                wrapClass: 'hide-me'
+            });
+        </script>
+        {/block:TagPage}
+        
+        <!-- Theme CSS (needed for backend template WYSIWYG options) -->
+        
         <style>
             body {
                 {block:IfShowBorder}border: solid 8px {AccentColor};{/block:IfShowBorder}
@@ -82,6 +111,7 @@
         
         </script>
         {/block:IfGoogleAnalyticsID}
+
     </head>
     <body class="{block:NoSearchResults}no-results{/block:NoSearchResults} {Title}">
         <!--[if lt IE 7]>
@@ -129,21 +159,21 @@
                         </li> -->
                     {/block:AskEnabled}
                     {block:IfShowSearch}
-        			<li id="search" class="search">
-        		    <form action="/search" method="get">
-        		        <input class="search-input" type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search"/>
-        			    <input class="search-submit" type="submit" value="Search"/>
-        			    <span class="icon-search"></span>
-        		    </form>
-		            </li>
-		            {/block:IfShowSearch}
+                    <li id="search" class="search">
+                    <form action="/search" method="get">
+                        <input class="search-input" type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search"/>
+                        <input class="search-submit" type="submit" value="Search"/>
+                        <span class="icon-search"></span>
+                    </form>
+                    </li>
+                    {/block:IfShowSearch}
                 </ul>
             </nav> <!-- nav End -->
             
             <!-- Current Page Title container -->
             
             <div class="tag-page-title">
-                <h1>{block:TagPage}<span>Tagged:</span> &ldquo;{Tag}&rdquo;{/block:TagPage}</h1>
+                <h1>{block:TagPage}{Tag}{/block:TagPage}</h1>
             </div>
             
 
@@ -356,13 +386,13 @@
                                         {/block:Tags}
                                     </ul>
                                 </div>
-        					
+                            
                                 <ul class="share">
-        	                        <li>{ReblogButton color="black" size="18"}</li>
+                                    <li>{ReblogButton color="black" size="18"}</li>
                                     <li>{LikeButton color="black" size="18"}</li>
-        	                    </ul>
-    	                    </div>
-    	                    
+                                </ul>
+                            </div>
+                            
                             {block:IfDisqusShortname}
                             <section id="comments" class="comments">
                                 <h3>Comments</h3>
@@ -392,15 +422,15 @@
                         {block:IndexPage}
                         <ul class="post-menu mobile">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
-        	                <li class="reblog-button">{ReblogButton color="black" size="18"}</li>
+                            <li class="reblog-button">{ReblogButton color="black" size="18"}</li>
                             <li class="like-button">{LikeButton color="black" size="18"}</li>
-        	            </ul>
-        	            
+                        </ul>
+                        
                         <ul class="post-menu pc">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
-        	                <li class="reblog-button">{ReblogButton color="black" size="16"}</li>
+                            <li class="reblog-button">{ReblogButton color="black" size="16"}</li>
                             <li class="like-button">{LikeButton color="black" size="16"}</li>
-        	            </ul>
+                        </ul>
                         {/block:IndexPage}
                     </section> <!-- .post End -->
                 </article> <!-- article End -->
@@ -429,43 +459,43 @@
             <!-- Not Delete Here -->
             
             <ul class="social-links clearfix">
-    			    {block:IfURLWebsite}
-    					<li><a href="{text:URL Website}" target="_blank" title="Website"><i class="icon-screen"></i></a></li>
-    				{/block:IfURLWebsite}
-    				{block:IfURLTwitter}
-    					<li><a href="{text:URL Twitter}" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
-    				{/block:IfURLTwitter}
-    				{block:IfURLFacebook}
-    					<li><a href="{text:URL Facebook}" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
-    				{/block:IfURLFacebook}
-    				{block:IfURLGooglePlus}
-    					<li><a href="{text:URL Google Plus}" target="_blank" title="Google"><i class="icon-googleplus"></i></a></li>
-    				{/block:IfURLGooglePlus}
-    				{block:IfURLInstagram}
-    					<li><a href="{text:URL Instagram}" target="_blank" title="Instagram"><i class="icon-instagram"></i></a></li>
-    				{/block:IfURLInstagram}
-    				{block:IfURLFlickr}
-    					<li><a href="{text:URL Flickr}" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
-    				{/block:IfURLFlickr}
-    				{block:IfURLPinterest}
-    					<li><a href="{text:URL Pinterest}" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a></li>
-    				{/block:IfURLPinterest}
-    				{block:IfURLYoutube}
-    					<li><a href="{text:URL Youtube}" target="_blank" title="Youtube"><i class="icon-youtube2"></i></a></li>
-    				{/block:IfURLYoutube}
-    				{block:IfURLVimeo}
-    					<li><a href="{text:URL Vimeo}" target="_blank" title="Vimeo"><i class="icon-vimeo"></i></a></li>
-    				{/block:IfURLVimeo}
-    				{block:IfURLDribbble}
-    					<li><a href="{text:URL Dribbble}" target="_blank" title="Dribbble"><i class="icon-dribbble"></i></a></li>
-    				{/block:IfURLDribbble}
-    				{block:IfURLBehance}
-    					<li><a href="{text:URL Behance}" target="_blank" title="Behance"><i class="icon-behance"></i></a></li>
-    				{/block:IfURLBehance}
-    				{block:IfEmailAddress}
-    					<li><a href="mailto:{text:Email Address}" target="_blank" title="Email"><i class="icon-envelope"></i></a></li>
-    				{/block:IfEmailAddress}
-    			</ul>
+                    {block:IfURLWebsite}
+                        <li><a href="{text:URL Website}" target="_blank" title="Website"><i class="icon-screen"></i></a></li>
+                    {/block:IfURLWebsite}
+                    {block:IfURLTwitter}
+                        <li><a href="{text:URL Twitter}" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
+                    {/block:IfURLTwitter}
+                    {block:IfURLFacebook}
+                        <li><a href="{text:URL Facebook}" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
+                    {/block:IfURLFacebook}
+                    {block:IfURLGooglePlus}
+                        <li><a href="{text:URL Google Plus}" target="_blank" title="Google"><i class="icon-googleplus"></i></a></li>
+                    {/block:IfURLGooglePlus}
+                    {block:IfURLInstagram}
+                        <li><a href="{text:URL Instagram}" target="_blank" title="Instagram"><i class="icon-instagram"></i></a></li>
+                    {/block:IfURLInstagram}
+                    {block:IfURLFlickr}
+                        <li><a href="{text:URL Flickr}" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
+                    {/block:IfURLFlickr}
+                    {block:IfURLPinterest}
+                        <li><a href="{text:URL Pinterest}" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a></li>
+                    {/block:IfURLPinterest}
+                    {block:IfURLYoutube}
+                        <li><a href="{text:URL Youtube}" target="_blank" title="Youtube"><i class="icon-youtube2"></i></a></li>
+                    {/block:IfURLYoutube}
+                    {block:IfURLVimeo}
+                        <li><a href="{text:URL Vimeo}" target="_blank" title="Vimeo"><i class="icon-vimeo"></i></a></li>
+                    {/block:IfURLVimeo}
+                    {block:IfURLDribbble}
+                        <li><a href="{text:URL Dribbble}" target="_blank" title="Dribbble"><i class="icon-dribbble"></i></a></li>
+                    {/block:IfURLDribbble}
+                    {block:IfURLBehance}
+                        <li><a href="{text:URL Behance}" target="_blank" title="Behance"><i class="icon-behance"></i></a></li>
+                    {/block:IfURLBehance}
+                    {block:IfEmailAddress}
+                        <li><a href="mailto:{text:Email Address}" target="_blank" title="Email"><i class="icon-envelope"></i></a></li>
+                    {/block:IfEmailAddress}
+                </ul>
         </footer>
         
         </div> <!-- #container -->
@@ -476,10 +506,10 @@
         
         <script src="https://static.tumblr.com/wofln30/krAmywu6r/jquery.fitvids.js"></script>
         <script>
-    	$(document).ready(function(){
-    		$(".video-wrapper, .audio_container").fitVids();						   
-    	});
-    	</script>
+        $(document).ready(function(){
+            $(".video-wrapper, .audio_container").fitVids();                           
+        });
+        </script>
         
         <script src="https://static.tumblr.com/wofln30/2XXmyt1i0/jquery.colorbox.js"></script> 
         <script src="https://static.tumblr.com/wofln30/lFrmyt0d1/jquery.photoset-grid.min.js"></script>
@@ -501,9 +531,9 @@
           }
         });
         </script>
-		
-		<script src="https://static.tumblr.com/wdg4six/FoRn5cxzf/classie.js"></script>
-		<script>
+        
+        <script src="https://static.tumblr.com/wdg4six/FoRn5cxzf/classie.js"></script>
+        <script>
         window.onload = function() {
             $('.loading').css({ opacity: 0 });
             $('#container').animate({ opacity: 1 });
@@ -530,7 +560,7 @@
         </script>
         
         <script src="https://static.tumblr.com/wdg4six/dcIn7ktrq/masonry.pkgd.min.js"></script>
-		<script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
+        <script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
         <script>
           $(function(){
             var $tiles = $('.indexpage');

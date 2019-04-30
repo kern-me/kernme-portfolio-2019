@@ -236,10 +236,11 @@ footer * {  color: white }
 .indexpage .post h2 { font-size: 1.5rem }
 .indexpage .post h3 { color: #a9a9a9 }
 
-.permalinkpage h1.post-title {
+.permalinkpage h1.post-title,
+.tag-page-title {
   font-size: 4rem;
   line-height: 1.1;
-  margin: 0 0  1rem 0;
+  margin: 0 0  2rem 0;
   padding: 0;
   text-align: center
 }
