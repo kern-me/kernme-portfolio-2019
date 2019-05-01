@@ -12,20 +12,20 @@
         <meta name="description" content="{MetaDescription}">
         {/block:Description}
         <meta name="p:domain_verify" content="c26bac28da30c4dc2fd0f67ef9186a75"/>
-
+        
         {block:Hidden}
         <meta name="select:Date" content="japanese" title="Japanese">
         <meta name="select:Date" content="unitedkingdom" title="United Kingdom">
         <meta name="select:Date" content="unitedstates" title="United States">
-
+        
         <meta name="image:Logo" content=""/>
-
+        
         <meta name="if:Show Search" content="0"/>
         <meta name="if:Show Border" content="1"/>
-
+        
         <meta name="text:Disqus shortname" content="">
         <meta name="text:Google Analytics ID" content="">
-
+        
         <meta name="text:URL Website" content=""/>
         <meta name="text:URL Twitter" content=""/>
         <meta name="text:URL Facebook" content=""/>
@@ -39,9 +39,9 @@
         <meta name="text:URL Behance" content=""/>
         <meta name="text:Email Address" content=""/>
         {/block:Hidden}
-
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
@@ -51,27 +51,27 @@
         <link rel="stylesheet" href="https://static.tumblr.com/wdg4six/J1Yn86t5d/creativetree-icons.css">
         <link rel="stylesheet" href="https://static.tumblr.com/wdg4six/iEEn9tpeq/square-main.css">
         <link rel="stylesheet" href="https://static.tumblr.com/wofln30/FGGmyt1xp/colorbox.css">
-
+        
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento" rel="stylesheet">
+        
 
-
-
-
+        
+        
         <!-- Modernizer -->
         <script src="https://static.tumblr.com/wdg4six/fUCn4uglv/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
+        
         <!-- String Replacements -->
         <!-- CREDIT: https://github.com/padolsey/findAndReplaceDOMText -->
        <script src="https://static.tumblr.com/codwazr/N8Fpqs13s/findandreplacedomtext.js"></script>
-
+        
         {block:TagPage}
         <style>
             .hide-me {
                 display: none;
             }
         </style>
-
+        
         <script>
             findAndReplaceDOMText(document.querySelector('.tag-page-title h1'), {
                 find: '“”',
@@ -80,37 +80,37 @@
             });
         </script>
         {/block:TagPage}
-
+        
         <!-- Theme CSS (needed for backend template WYSIWYG options) -->
-
+        
         <style>
             body {
                 {block:IfShowBorder}border: solid 8px {AccentColor};{/block:IfShowBorder}
             }
-
+            
             a { color: {AccentColor} }
-
+            
             .loading { background-color: {AccentColor}; }
-
+            
             #blog-title h1 a { color: {TitleColor}; }
-
+        
             /* Custom CSS */
             {CustomCSS}
         </style>
-
+        
         {block:IfGoogleAnalyticsID}
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
+        
           ga('create', '{text:Google Analytics ID}', 'tumblr.com');
           ga('send', 'pageview');
-
+        
         </script>
         {/block:IfGoogleAnalyticsID}
-
+        
 <!-- Kern-me CSS Overrides -->
 
 <!-- <link rel="stylesheet" type="text/css" href="https://static.tumblr.com/codwazr/FAvpqs4gf/styles.css"> -->
@@ -308,7 +308,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
   /*display: none;*/
 }
 
-.permalinkpage .post h2 {
+.permalinkpage .post h2 { 
   font-size: 2.5rem;
   margin-top: 3rem;
   clear: both
@@ -381,14 +381,60 @@ article .post p:last-of-type { margin-bottom: 1rem }
 }
 
 .permalink-container {
+    display: none;
+}
+
+.indexpage .permalink-container {
+  background-color: rgba(255,255,255,0.85);
   color: white;
-  display: block;
+  display: flex;
   height: 100%;
   left: 0;
+  opacity: 0;
   position: absolute;
-  top: 10%;
+  top: 0;
+  transition: 0.3s;
   width: 100%;
   z-index: 1;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+
+.indexpage .permalink-container:before {
+    color: #333;
+    content: "read more \203A";
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+.indexpage .permalink-container:hover {
+    opacity: 0.95;
+}
+
+@media only screen and (min-width: 500px) {
+  .post-menu.pc {
+    display: none;
+    /*
+    cursor: pointer;
+    display: inline;
+    z-index: 2;
+    */
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .post-menu {
+    display: none;
+  }
+}
+
+.post-menu {
+    display: none;
 }
 
 </style>
@@ -398,10 +444,10 @@ article .post p:last-of-type { margin-bottom: 1rem }
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-
+        
+        
     <div class="loading"></div>
-
+        
     <div id="wrapper">
         <div id="container" class="clearfix">
         <header class="wrapper clearfix" style="border-bottom: 1px dashed #ccc;">
@@ -414,12 +460,12 @@ article .post p:last-of-type { margin-bottom: 1rem }
                 </a></h1>
             </section>
             {/block:ShowTitle}
-
+            
             {block:ShowDescription}
             <section id="description"><h2>{Description}</h2></section>
             {/block:ShowDescription}
         </header>
-
+        
             <nav> <!-- nav -->
                 <ul id="menu">
                     {block:HasPages}
@@ -450,26 +496,26 @@ article .post p:last-of-type { margin-bottom: 1rem }
                     {/block:IfShowSearch}
                 </ul>
             </nav> <!-- nav End -->
-
+            
             <!-- Tag Page Title -->
             {block:TagPage}
             <div class="tag-page-title">
                 <h1>{Tag}</h1>
             </div>
             {/block:TagPage}
+            
 
-
-
+            
         <main class="{block:IndexPage}indexpage{/block:IndexPage} {block:PermalinkPage}permalinkpage{/block:PermalinkPage}"> <!-- main -->
-
+                
                 <div class="grid-sizer"></div>
-
+                
                 {block:Posts}
-
+                
                 <article class="{PostType}">
                     <a class="permalink-container" href="{PermaLink}">&nbsp;</a>
                     <section class="post">
-
+                        
                         <!-- TEXT POSTS -->
                         {block:Text}
                             {block:Title}
@@ -477,39 +523,39 @@ article .post p:last-of-type { margin-bottom: 1rem }
                                 {block:IndexPage}
                                     <a href="{Permalink}">{Title}</a>
                                 {/block:IndexPage}
-
+                                
                                 {block:PermalinkPage}
                                     {Title}
                                 {/block:PermalinkPage}
                                     </h1>
                             {/block:Title}
-
+                            
                             {block:Body}{Body}{/block:Body}
                         {/block:Text}
-
+                        
                         <!-- PHOTO POSTS -->
                         {block:Photo}
                             {block:IndexPage}
                                 <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}">
-
+                            
                                 <a href="{Permalink}">
                                     <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}">
                                 </a>
                             {/block:IndexPage}
-
+                            
                             {block:PermalinkPage}
                                 {LinkOpenTag}
                                     <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">
                                 {LinkCloseTag}
                             {/block:PermalinkPage}
-
+                            
                             {block:Caption}
                                 <figcaption class="caption">{Caption}</figcaption>
                             {/block:Caption}
                             </figure>
                         {/block:Photo}
-
-
+                        
+                        
                         <!-- PHOTOSET POSTS-->
                         {block:Photoset}
                         <figure class="photoset-grid-lightbox photoset {block:Caption}with-caption{/block:Caption}" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
@@ -523,8 +569,8 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {/block:Caption}
                         </figure>
                         {/block:Photoset}
-
-
+                        
+                        
                         <!-- QUOTES -->
                         {block:Quote}
                         <blockquote class="{Length}">
@@ -534,7 +580,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         <p class="source">—&nbsp;{Source}</p>
                         {/block:Source}
                         {/block:Quote}
-
+                        
                         {block:Link}
                         <div class="link-wrapper">
                             <h1>
@@ -552,7 +598,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </div>
                         {/block:Description}
                         {/block:Link}
-
+                        
                         <!-- Chat -->
                         {block:Chat}
                         {block:Title}<h1 class="post-title" {block:PermalinkPage}{block:Date}{/block:Date}{/block:PermalinkPage}><a href="{Permalink}">{Title}</a></h1>{/block:Title}
@@ -562,7 +608,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {/block:Lines}
                             </ul>
                         {/block:Chat}
-
+                        
                         <!-- Audio -->
                         {block:Audio}
                         <div class="audio_container">
@@ -576,8 +622,8 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </div>
                         {/block:Caption}
                         {/block:Audio}
-
-                        {block:Video}
+                        
+                        {block:Video}                            
                         <figure {block:Caption}class="with-caption"{/block:Caption}>
                             <div class="video-wrapper">
                                 {Video-700}
@@ -589,7 +635,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {/block:Caption}
                         </figure>
                         {/block:Video}
-
+                        
                         {block:Answer}
                         <div class="note-item note-item-asker clearfix">
                             <div class="asker-avatar-wrapper">
@@ -621,8 +667,8 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {Replies}
                         </div>
                         {/block:Answer}
-
-
+                        
+                        
                         {block:RebloggedFrom}
                         <section class="post-meta">
                             {block:ContentSource}
@@ -631,25 +677,25 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </section>
                         <ul class="attribution-tags clearfix">
                             <li class="reblog-icon"><span class="icon-loop"></span></li>
-                            <li class="reblog-parent"><a href="{ReblogParentURL}">{ReblogParentName}</a></li>
+                            <li class="reblog-parent"><a href="{ReblogParentURL}">{ReblogParentName}</a></li> 
                         </ul>
                         {/block:RebloggedFrom}
-
+                        
                         {block:More}
                         <div class="read-more">
                             <a href="{Permalink}">・・・</a>
                         </div>
                         {/block:More}
-
+                        
                         {block:PermalinkPage}
                         {block:NotReblog}
                             <section class="post-meta">
                                 {block:ContentSource}
                                     ({lang:Source}: <a class="source-link" href="{SourceURL}">{SourceTitle}</a>)
                                 {/block:ContentSource}
-                            </section>
+                            </section> 
                         {/block:NotReblog}
-
+                        
                         {block:Date}
                         <aside class="clearfix">
                             <div class="meta-wrapper clearfix">
@@ -659,21 +705,21 @@ article .post p:last-of-type { margin-bottom: 1rem }
                                         <time datetime="{Year}-{MonthNumber}-{DayOfMonth}"  pubdate="pubdate" class="us">{Month} {DayOfMonthWithZero}, {Year}</time>
                                         <time datetime="{Year}-{MonthNumber}-{DayOfMonth}"  pubdate="pubdate" class="jp">{Year}年{MonthNumber}月{DayOfMonth}日</time>
                                     </div>
-
-
+                                    
+                                    
                                     <ul class="tags">
                                         {block:Tags}
                                         <li><a href="{TagURL}" class="tag">#{Tag}</a></li>
                                         {/block:Tags}
                                     </ul>
                                 </div>
-
+                            
                                 <ul class="share">
                                     <li>{ReblogButton color="black" size="18"}</li>
                                     <li>{LikeButton color="black" size="18"}</li>
                                 </ul>
                             </div>
-
+                            
                             {block:IfDisqusShortname}
                             <section id="comments" class="comments">
                                 <h3>Comments</h3>
@@ -689,7 +735,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                                 <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
                             </section>
                             {/block:IfDisqusShortname}
-
+                            
                             {block:NoteCount}
                             <section id="notes" class="notes-wrapper clearfix">
                                 <h3>{NoteCountWithLabel}</h3>
@@ -699,14 +745,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </aside>
                         {/block:Date}
                         {/block:PermalinkPage}
-
+                        
                         {block:IndexPage}
                         <ul class="post-menu mobile">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
                             <li class="reblog-button">{ReblogButton color="black" size="18"}</li>
                             <li class="like-button">{LikeButton color="black" size="18"}</li>
                         </ul>
-
+                        
                         <ul class="post-menu pc">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
                             <li class="reblog-button">{ReblogButton color="black" size="16"}</li>
@@ -728,9 +774,9 @@ article .post p:last-of-type { margin-bottom: 1rem }
             </section>
             {/block:Pagination}
         {/block:IndexPage}
-
+        
         </main> <!-- main End -->
-
+        
         <footer class="{block:NoSearchResults}no-results{/block:NoSearchResults}">
             <small>&copy; {Title}</small>
             <!-- Not Delete Here -->
@@ -738,7 +784,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                 <small><a href="https://the-square-theme.tumblr.com/getthistheme">Square theme by Creativetree (modified)</a></small>
             </div>
             <!-- Not Delete Here -->
-
+            
             <ul class="social-links clearfix">
                     {block:IfURLWebsite}
                         <li><a href="{text:URL Website}" target="_blank" title="Website"><i class="icon-screen"></i></a></li>
@@ -778,28 +824,28 @@ article .post p:last-of-type { margin-bottom: 1rem }
                     {/block:IfEmailAddress}
                 </ul>
         </footer>
-
+        
         </div> <!-- #container -->
     </div> <!-- #wrapper -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="https://static.tumblr.com/wdg4six/C5un4ugjv/jquery-1.11.0.min.js"><\/script>')</script>
-
+        
         <script src="https://static.tumblr.com/wofln30/krAmywu6r/jquery.fitvids.js"></script>
         <script>
         $(document).ready(function(){
-            $(".video-wrapper, .audio_container").fitVids();
+            $(".video-wrapper, .audio_container").fitVids();                           
         });
         </script>
-
-        <script src="https://static.tumblr.com/wofln30/2XXmyt1i0/jquery.colorbox.js"></script>
+        
+        <script src="https://static.tumblr.com/wofln30/2XXmyt1i0/jquery.colorbox.js"></script> 
         <script src="https://static.tumblr.com/wofln30/lFrmyt0d1/jquery.photoset-grid.min.js"></script>
         <script>
         $('.photoset').photosetGrid({
           highresLinks: true,
           rel: 'withhearts-gallery',
           gutter: '2px',
-
+    
           onComplete: function(){
             $('.photoset-grid-lightbox').attr('style', '');
             $('.photoset-grid-lightbox a.photoset-cell').colorbox({
@@ -812,7 +858,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
           }
         });
         </script>
-
+        
         <script src="https://static.tumblr.com/wdg4six/FoRn5cxzf/classie.js"></script>
         <script>
         window.onload = function() {
@@ -820,17 +866,17 @@ article .post p:last-of-type { margin-bottom: 1rem }
             $('#container').animate({ opacity: 1 });
         }
         </script>
-
+        
         <script>
             $(function () {
                 setNavigation();
             });
-
+            
             function setNavigation() {
                 var path = window.location.pathname;
                 path = path.replace(/\/$/, "");
                 path = decodeURIComponent(path);
-
+            
                 $("#menu a").each(function () {
                     var href = $(this).attr('href');
                     if (path.substring(0, href.length) === href) {
@@ -839,7 +885,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
                 });
             }
         </script>
-
+        
         <script src="https://static.tumblr.com/wdg4six/dcIn7ktrq/masonry.pkgd.min.js"></script>
         <script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
         <script>
