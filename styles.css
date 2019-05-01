@@ -253,9 +253,24 @@ article .post p:last-of-type { margin-bottom: 1rem }
 }
 
 .tag-page-title {
-  text-align: center;
   margin-bottom: 3rem;
-  text-transform: lowercase;
+  text-align: center;
+  text-transform: lowercase
+}
+
+.indexpage article {
+    overflow: hidden
+}
+
+.permalink-container {
+  color: white;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  z-index: 1;
 }
 
 
