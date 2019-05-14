@@ -134,9 +134,7 @@ h1, h2, h3, h4, h5 {
 
 article:before, nav:before { background: none; }
 
-section .post h1 {
-  word-break: initial;
-}
+
 
 hr {
   display: block;
@@ -316,7 +314,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
 
 .permalinkpage .post h3 {
   font-size: 1.75rem;
-  color: #b6b6b6
+  color: #919191
 }
 
 .permalinkpage .post ol li,
@@ -341,9 +339,17 @@ article .post p:last-of-type { margin-bottom: 1rem }
 /* INDEX PAGE
 /* --------------------- */
 
-.indexpage h1.post-title { font-size: 1.75rem }
-.indexpage .post h2 { font-size: 1.5rem }
+.indexpage h1.post-title,
+.indexpage .link-wrapper h1 {
+    font-size: 1.5rem
+}
+
+.indexpage .post h2 { font-size: 1.15rem }
 .indexpage .post h3 { color: #a9a9a9 }
+
+.indexpage article.photo {
+    display: none;
+}
 
 .indexpage article {
   background: white;
@@ -428,7 +434,6 @@ article .post p:last-of-type { margin-bottom: 1rem }
     */
   }
   
-  
 }
 
 @media only screen and (min-width: 500px) {
@@ -448,6 +453,36 @@ article .post p:last-of-type { margin-bottom: 1rem }
     border-left: none
   }    
 }
+
+.indexpage .tags {
+    border-top: #ccc dashed 1px;
+    position: relative;
+    z-index: 3;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.indexpage .tags a {
+    color: inherit;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.indexpage .tags a:hover {
+    color: #ffcc00;
+}
+
+.indexpage .tags li {
+    margin-right: 0.25rem;
+}
+
+.indexpage .tags li a {
+    color: #848484;
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+}
+
+
 
 
 </style>
@@ -499,14 +534,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </li> -->
                     {/block:AskEnabled}
                     {block:IfShowSearch}
-                    <li id="search" class="search">
-                    <form action="/search" method="get">
-                        <input class="search-input" type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search"/>
-                        <input class="search-submit" type="submit" value="Search"/>
-                        <span class="icon-search"></span>
-                    </form>
-                    </li>
-                    {/block:IfShowSearch}
+              <li id="search" class="search">
+                <form action="/search" method="get">
+                    <input class="search-input" type="text" name="q" value="{SearchQuery}" placeholder="{lang:Search}" id="search"/>
+                  <input class="search-submit" type="submit" value="Search"/>
+                  <span class="icon-search"></span>
+                </form>
+                </li>
+                {/block:IfShowSearch}
                 </ul>
             </nav> <!-- nav End -->
             
@@ -528,8 +563,15 @@ article .post p:last-of-type { margin-bottom: 1rem }
                 <article class="{PostType}">
                     <a class="permalink-container" href="{PermaLink}">&nbsp;</a>
                     <section class="post">
+                    
+                    
+                        <!-- ================ -->
+                        <!-- ================ -->
+                        <!-- POST TYPE : TEXT -->
+                        <!-- ================ -->
+                        <!-- ================ -->
                         
-                        <!-- TEXT POSTS -->
+                        
                         {block:Text}
                             {block:Title}
                                 <h1 class="post-title">
@@ -546,7 +588,12 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {block:Body}{Body}{/block:Body}
                         {/block:Text}
                         
-                        <!-- PHOTO POSTS -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE : PHOTO -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
                         {block:Photo}
                             {block:IndexPage}
                                 <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}">
@@ -568,8 +615,12 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             </figure>
                         {/block:Photo}
                         
+                        <!-- ==================== -->
+                        <!-- ==================== -->
+                        <!-- POST TYPE : PHOTOSET -->
+                        <!-- ==================== -->
+                        <!-- ==================== -->
                         
-                        <!-- PHOTOSET POSTS-->
                         {block:Photoset}
                         <figure class="photoset-grid-lightbox photoset {block:Caption}with-caption{/block:Caption}" data-layout="{PhotosetLayout}" data-id="photoset{PostID}">
                             {block:Photos}
@@ -584,7 +635,12 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         {/block:Photoset}
                         
                         
-                        <!-- QUOTES -->
+                        <!-- ================== -->
+                        <!-- ================== -->
+                        <!-- POST TYPE : QUOTES -->
+                        <!-- ================== -->
+                        <!-- ================== -->
+                        
                         {block:Quote}
                         <blockquote class="{Length}">
                             {Quote}
@@ -593,6 +649,13 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         <p class="source">—&nbsp;{Source}</p>
                         {/block:Source}
                         {/block:Quote}
+                        
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE : LINK  -->
+                        <!-- ================= -->
+                        <!-- ================= -->
                         
                         {block:Link}
                         <div class="link-wrapper">
@@ -605,14 +668,23 @@ article .post p:last-of-type { margin-bottom: 1rem }
                                 </a>
                             </h1>
                         </div>
+                        
                         {block:Description}
                         <div class="caption">
                             {Description}
                         </div>
+                        
                         {/block:Description}
                         {/block:Link}
                         
-                        <!-- Chat -->
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE : CHAT -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
+                        
                         {block:Chat}
                         {block:Title}<h1 class="post-title" {block:PermalinkPage}{block:Date}{/block:Date}{/block:PermalinkPage}><a href="{Permalink}">{Title}</a></h1>{/block:Title}
                             <ul class="conversation">
@@ -622,7 +694,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             </ul>
                         {/block:Chat}
                         
-                        <!-- Audio -->
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE : AUDIO -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
+                        
                         {block:Audio}
                         <div class="audio_container">
                             {block:AudioEmbed}
@@ -636,6 +715,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         {/block:Caption}
                         {/block:Audio}
                         
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE : VIDEO -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
+                        
                         {block:Video}                            
                         <figure {block:Caption}class="with-caption"{/block:Caption}>
                             <div class="video-wrapper">
@@ -648,6 +735,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
                             {/block:Caption}
                         </figure>
                         {/block:Video}
+                        
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- POST TYPE: ANSWER -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
                         
                         {block:Answer}
                         <div class="note-item note-item-asker clearfix">
@@ -682,6 +777,13 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         {/block:Answer}
                         
                         
+                        <!-- ========================= -->
+                        <!-- ========================= -->
+                        <!-- POST TYPE: REBLOGGED FROM -->
+                        <!-- ========================= -->
+                        <!-- ========================= -->
+                        
+                        
                         {block:RebloggedFrom}
                         <section class="post-meta">
                             {block:ContentSource}
@@ -694,11 +796,26 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         </ul>
                         {/block:RebloggedFrom}
                         
+                        <!-- =================== -->
+                        <!-- =================== -->
+                        <!-- READ MORE CONTAINER -->
+                        <!-- =================== -->
+                        <!-- =================== -->
+                        
+                        
                         {block:More}
                         <div class="read-more">
                             <a href="{Permalink}">・・・</a>
                         </div>
                         {/block:More}
+                        
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- PERMALINK RULES -->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
                         
                         {block:PermalinkPage}
                         {block:NotReblog}
@@ -726,13 +843,21 @@ article .post p:last-of-type { margin-bottom: 1rem }
                                         {/block:Tags}
                                     </ul>
                                 </div>
-                            
+                  
                                 <ul class="share">
-                                    <li>{ReblogButton color="black" size="18"}</li>
+                                  <li>{ReblogButton color="black" size="18"}</li>
                                     <li>{LikeButton color="black" size="18"}</li>
-                                </ul>
-                            </div>
-                            
+                              </ul>
+                          </div>
+                          
+                          
+                          <!-- ================= -->
+                          <!-- ================= -->
+                          <!-- DISCUS SHORTNAME -->
+                          <!-- ================= -->
+                          <!-- ================= -->
+                          
+                          
                             {block:IfDisqusShortname}
                             <section id="comments" class="comments">
                                 <h3>Comments</h3>
@@ -759,22 +884,48 @@ article .post p:last-of-type { margin-bottom: 1rem }
                         {/block:Date}
                         {/block:PermalinkPage}
                         
+                        
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        <!-- INDEX PAGE MENU-->
+                        <!-- ================= -->
+                        <!-- ================= -->
+                        
+                        
                         {block:IndexPage}
                         <ul class="post-menu mobile">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
-                            <li class="reblog-button">{ReblogButton color="black" size="18"}</li>
+                          <li class="reblog-button">{ReblogButton color="black" size="18"}</li>
                             <li class="like-button">{LikeButton color="black" size="18"}</li>
-                        </ul>
-                        
+                      </ul>
+                      
                         <ul class="post-menu pc">
                             <li><a href="{Permalink}"><span class="icon-link"></span></a></li>
-                            <li class="reblog-button">{ReblogButton color="black" size="16"}</li>
+                          <li class="reblog-button">{ReblogButton color="black" size="16"}</li>
                             <li class="like-button">{LikeButton color="black" size="16"}</li>
+                      </ul>
+                      <style>
+                          
+                      </style>
+                      <ul class="tags">
+                            {block:Tags}
+                                <li>
+                                    <a href="{TagURL}" class="tag">#{Tag}</a>
+                                </li>
+                            {/block:Tags}
                         </ul>
+                        
                         {/block:IndexPage}
                     </section> <!-- .post End -->
                 </article> <!-- article End -->
                 {/block:Posts}
+                
+                <!-- ======================-->
+                <!-- ======================-->
+                <!-- INDEX PAGE PAGINATION -->
+                <!-- ======================-->
+                <!-- ======================-->
+                
         {block:IndexPage}
         {block:Pagination}
             <section id="pagination" class="clearfix">
@@ -790,6 +941,14 @@ article .post p:last-of-type { margin-bottom: 1rem }
         
         </main> <!-- main End -->
         
+        
+        <!-- ======================-->
+        <!-- ======================-->
+        <!-- FOOTER -->
+        <!-- ======================-->
+        <!-- ======================-->
+        
+        
         <footer class="{block:NoSearchResults}no-results{/block:NoSearchResults}">
             <small>&copy; {Title}</small>
             <!-- Not Delete Here -->
@@ -799,43 +958,43 @@ article .post p:last-of-type { margin-bottom: 1rem }
             <!-- Not Delete Here -->
             
             <ul class="social-links clearfix">
-                    {block:IfURLWebsite}
-                        <li><a href="{text:URL Website}" target="_blank" title="Website"><i class="icon-screen"></i></a></li>
-                    {/block:IfURLWebsite}
-                    {block:IfURLTwitter}
-                        <li><a href="{text:URL Twitter}" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
-                    {/block:IfURLTwitter}
-                    {block:IfURLFacebook}
-                        <li><a href="{text:URL Facebook}" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
-                    {/block:IfURLFacebook}
-                    {block:IfURLGooglePlus}
-                        <li><a href="{text:URL Google Plus}" target="_blank" title="Google"><i class="icon-googleplus"></i></a></li>
-                    {/block:IfURLGooglePlus}
-                    {block:IfURLInstagram}
-                        <li><a href="{text:URL Instagram}" target="_blank" title="Instagram"><i class="icon-instagram"></i></a></li>
-                    {/block:IfURLInstagram}
-                    {block:IfURLFlickr}
-                        <li><a href="{text:URL Flickr}" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
-                    {/block:IfURLFlickr}
-                    {block:IfURLPinterest}
-                        <li><a href="{text:URL Pinterest}" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a></li>
-                    {/block:IfURLPinterest}
-                    {block:IfURLYoutube}
-                        <li><a href="{text:URL Youtube}" target="_blank" title="Youtube"><i class="icon-youtube2"></i></a></li>
-                    {/block:IfURLYoutube}
-                    {block:IfURLVimeo}
-                        <li><a href="{text:URL Vimeo}" target="_blank" title="Vimeo"><i class="icon-vimeo"></i></a></li>
-                    {/block:IfURLVimeo}
-                    {block:IfURLDribbble}
-                        <li><a href="{text:URL Dribbble}" target="_blank" title="Dribbble"><i class="icon-dribbble"></i></a></li>
-                    {/block:IfURLDribbble}
-                    {block:IfURLBehance}
-                        <li><a href="{text:URL Behance}" target="_blank" title="Behance"><i class="icon-behance"></i></a></li>
-                    {/block:IfURLBehance}
-                    {block:IfEmailAddress}
-                        <li><a href="mailto:{text:Email Address}" target="_blank" title="Email"><i class="icon-envelope"></i></a></li>
-                    {/block:IfEmailAddress}
-                </ul>
+              {block:IfURLWebsite}
+              <li><a href="{text:URL Website}" target="_blank" title="Website"><i class="icon-screen"></i></a></li>
+            {/block:IfURLWebsite}
+            {block:IfURLTwitter}
+              <li><a href="{text:URL Twitter}" target="_blank" title="Twitter"><i class="icon-twitter"></i></a></li>
+            {/block:IfURLTwitter}
+            {block:IfURLFacebook}
+              <li><a href="{text:URL Facebook}" target="_blank" title="Facebook"><i class="icon-facebook"></i></a></li>
+            {/block:IfURLFacebook}
+            {block:IfURLGooglePlus}
+              <li><a href="{text:URL Google Plus}" target="_blank" title="Google"><i class="icon-googleplus"></i></a></li>
+            {/block:IfURLGooglePlus}
+            {block:IfURLInstagram}
+              <li><a href="{text:URL Instagram}" target="_blank" title="Instagram"><i class="icon-instagram"></i></a></li>
+            {/block:IfURLInstagram}
+            {block:IfURLFlickr}
+              <li><a href="{text:URL Flickr}" target="_blank" title="Flickr"><i class="icon-flickr"></i></a></li>
+            {/block:IfURLFlickr}
+            {block:IfURLPinterest}
+              <li><a href="{text:URL Pinterest}" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a></li>
+            {/block:IfURLPinterest}
+            {block:IfURLYoutube}
+              <li><a href="{text:URL Youtube}" target="_blank" title="Youtube"><i class="icon-youtube2"></i></a></li>
+            {/block:IfURLYoutube}
+            {block:IfURLVimeo}
+              <li><a href="{text:URL Vimeo}" target="_blank" title="Vimeo"><i class="icon-vimeo"></i></a></li>
+            {/block:IfURLVimeo}
+            {block:IfURLDribbble}
+              <li><a href="{text:URL Dribbble}" target="_blank" title="Dribbble"><i class="icon-dribbble"></i></a></li>
+            {/block:IfURLDribbble}
+            {block:IfURLBehance}
+              <li><a href="{text:URL Behance}" target="_blank" title="Behance"><i class="icon-behance"></i></a></li>
+            {/block:IfURLBehance}
+            {block:IfEmailAddress}
+              <li><a href="mailto:{text:Email Address}" target="_blank" title="Email"><i class="icon-envelope"></i></a></li>
+            {/block:IfEmailAddress}
+          </ul>
         </footer>
         
         </div> <!-- #container -->
@@ -846,10 +1005,10 @@ article .post p:last-of-type { margin-bottom: 1rem }
         
         <script src="https://static.tumblr.com/wofln30/krAmywu6r/jquery.fitvids.js"></script>
         <script>
-        $(document).ready(function(){
-            $(".video-wrapper, .audio_container").fitVids();                           
-        });
-        </script>
+      $(document).ready(function(){
+        $(".video-wrapper, .audio_container").fitVids();               
+      });
+      </script>
         
         <script src="https://static.tumblr.com/wofln30/2XXmyt1i0/jquery.colorbox.js"></script> 
         <script src="https://static.tumblr.com/wofln30/lFrmyt0d1/jquery.photoset-grid.min.js"></script>
@@ -871,9 +1030,9 @@ article .post p:last-of-type { margin-bottom: 1rem }
           }
         });
         </script>
-        
-        <script src="https://static.tumblr.com/wdg4six/FoRn5cxzf/classie.js"></script>
-        <script>
+    
+    <script src="https://static.tumblr.com/wdg4six/FoRn5cxzf/classie.js"></script>
+    <script>
         window.onload = function() {
             $('.loading').css({ opacity: 0 });
             $('#container').animate({ opacity: 1 });
@@ -900,7 +1059,7 @@ article .post p:last-of-type { margin-bottom: 1rem }
         </script>
         
         <script src="https://static.tumblr.com/wdg4six/dcIn7ktrq/masonry.pkgd.min.js"></script>
-        <script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
+    <script src="https://static.tumblr.com/iwtk77u/Yhym2yygt/jquery.imagesloaded.min.js"></script>
         <script>
           $(function(){
             var $tiles = $('.indexpage');
