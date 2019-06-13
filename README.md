@@ -1,1 +1,2 @@
-# Kernme 2019 Portfolio
+# Nico Killips - Personal Blog
+## Tumblr Theme for the personal blog of Nico Killips
